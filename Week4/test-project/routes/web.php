@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NameController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -18,6 +19,19 @@ Route::get('/greeting', function () {
 });
 
 Route::redirect('/redirect', '/greeting', '301');
+
+/*
+Route::get('/names', [NameController::class,'index']);
+Route::get('/names/create', [NameController::class,'create']);
+Route::post('/names', [NameController::class,'store']);
+Route::get('/names/{id}', [NameController::class,'show']);
+Route::get('/names/{id}/edit', [NameController::class,'edit']);
+Route::put('/names/{id}', [NameController::class,'update']);
+Route::delete('/names/{id}', [NameController::class,'destroy']);
+
+This all can be summed in the line below
+*/
+Route::resource('/names', NameController::class);
 
 Route::get('/rps/{choice}', function ($choice) {
     $result = rpsBattle($choice);
